@@ -138,6 +138,7 @@ export const idofuser = (roomname:string, username:string) => {
 }
 export const getActive = (roomname:string) => {
   tmp = rooms.findIndex((r) => r.name === roomname);
+  if (tmp === -1) return [];
   return rooms[tmp].users.map((u) => {return {name:u.name, ac:u.ac}})
 }
 
