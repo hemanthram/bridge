@@ -17,6 +17,10 @@ services:
     rootDir: web
     buildCommand: npm ci && npm run build
     staticPublishPath: build
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
     envVars:
       - key: REACT_APP_API_URL
         value: https://bridge-twoz.onrender.com
