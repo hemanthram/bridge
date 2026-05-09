@@ -38,10 +38,17 @@ let socketroom:Hash = {};
 let socketname:Hash = {};
 let storeroom:Hash1 = {};
 
-const PORT = 8080;
+const PORT = Number(process.env.PORT) || 8080;
+const clientOrigins = (process.env.CLIENT_ORIGIN || "")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter((origin) => origin.length > 0);
 const app = express();
 const server = createServer(app);
 const io = socketio(server).listen(server, {pingInterval:10000, pingTimeout:5000});
+if (clientOrigins.length > 0) {
+  io.origins(clientOrigins);
+}
 io.on("connect", async (socket) => {
   // console.log(acusers);
 
@@ -228,7 +235,11 @@ io.on("connect", async (socket) => {
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+if (clientOrigins.length > 0) {
+  app.use(cors({ origin: clientOrigins, credentials: true }));
+} else {
+  app.use(cors());
+}
 
 app.get("/", (req,res) => {
   console.log(req.hostname, req.query)
@@ -241,6 +252,6 @@ app.get("/test", (req,res) => {
 })
 
 
-server.listen(process.env.PORT || PORT, () =>
+server.listen(PORT, () =>
   console.log(`Server has started on ${PORT}`)
 );
