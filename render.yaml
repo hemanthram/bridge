@@ -24,5 +24,3 @@ services:
     envVars:
       - key: NODE_VERSION
         value: 16
-      - key: REACT_APP_API_URL
-        value: https://bridge-twoz.onrender.com
