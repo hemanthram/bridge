@@ -16,3 +16,4 @@ Set the following Render environment variables:
 
 - `CLIENT_ORIGIN`: frontend URL(s) allowed by CORS. Use comma-separated values for multiple origins.
 - `PORT`: optional (Render injects this automatically).
+- `REACT_APP_API_URL`: backend URL used by the frontend build (for example `https://bridge-twoz.onrender.com`).

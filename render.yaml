@@ -11,3 +11,12 @@ services:
         value: 20
       - key: CLIENT_ORIGIN
         sync: false
+  - type: web
+    name: bridge-web
+    env: static
+    rootDir: web
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://bridge-twoz.onrender.com

@@ -29,8 +29,9 @@ const calcScore = (tar: number, sco: number) => {
 	else return 10 * tar + (sco - tar);
 };
 
-// const ENDPOINT = "http://localhost:8080";
-const ENDPOINT = "https://bridge007.herokuapp.com";
+const ENDPOINT = (
+	process.env.REACT_APP_API_URL || "https://bridge-twoz.onrender.com"
+).replace(/\/$/, "");
 let socket: SocketIOClient.Socket;
 let tmp: any = null;
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
