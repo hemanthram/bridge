@@ -22,5 +22,9 @@ services:
         source: /*
         destination: /index.html
     envVars:
+      - key: NODE_VERSION
+        value: 16
+      - key: NODE_OPTIONS
+        value: --openssl-legacy-provider
       - key: REACT_APP_API_URL
         value: https://bridge-twoz.onrender.com
